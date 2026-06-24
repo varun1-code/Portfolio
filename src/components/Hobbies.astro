@@ -1,0 +1,59 @@
+---
+const hobbies = [
+  {
+    icon: "📚",
+    title: "Reading",
+    description: "I enjoy reading contemporary and light fiction. Books help me explore new perspectives, improve my creativity, and unwind after a productive day.",
+  },
+  {
+    icon: "🎬",
+    title: "Movies",
+    description: "I enjoy watching films across a variety of genres, appreciating great storytelling, cinematography, and fresh ideas.",
+  },
+  {
+    icon: "🏋️",
+    title: "Fitness",
+    description: "Regular gym sessions are an important part of my routine. Staying physically active helps me maintain focus, discipline, and energy.",
+  },
+  {
+    icon: "🥾",
+    title: "Trekking",
+    description: "I love exploring nature through trekking. It is a great way to challenge myself, disconnect from screens, and recharge.",
+  },
+  {
+    icon: "🏍️",
+    title: "Bike Riding",
+    description: "Long rides give me a sense of freedom and adventure while helping me clear my mind and enjoy new places.",
+  },
+  {
+    icon: "🏏",
+    title: "Cricket & Badminton",
+    description: "Sports keep me active, competitive, and connected with friends. Cricket and badminton are my favorite ways to relax and have fun.",
+  },
+];
+---
+<section id="hobbies" class="py-24 bg-slate-900/50">
+  <div class="max-w-6xl mx-auto px-6">
+    <div data-reveal class="flex items-center gap-4 mb-16">
+      <span class="font-mono text-cyan-400 text-sm glow">06.</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-white">Beyond the Code</h2>
+      <div class="flex-1 h-px bg-slate-800"></div>
+    </div>
+
+    <p data-reveal class="text-slate-400 text-base mb-10 max-w-2xl">
+      I believe the best developers have a life outside the terminal. Here is what keeps me energetic, curious, and balanced.
+    </p>
+
+    <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {hobbies.map(hobby => (
+        <div class="flex gap-4 bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-cyan-400/40 hover:-translate-y-1 transition-all duration-300">
+          <span class="text-3xl shrink-0">{hobby.icon}</span>
+          <div>
+            <h3 class="text-white font-semibold mb-1">{hobby.title}</h3>
+            <p class="text-slate-500 text-sm leading-relaxed">{hobby.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

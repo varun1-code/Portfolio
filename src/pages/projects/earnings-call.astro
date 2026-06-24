@@ -1,0 +1,160 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+
+const steps = [
+  {
+    step: "01",
+    title: "Upload Document",
+    desc: "User uploads an earnings call transcript in PDF, DOCX, or TXT format. Scanned PDFs are handled automatically via Tesseract OCR with Poppler fallback.",
+  },
+  {
+    step: "02",
+    title: "Document Ingestion",
+    desc: "PyMuPDF parses PDF files, python-docx handles Word documents, and Tesseract OCR extracts text from scanned images. All formats are normalized into clean text.",
+  },
+  {
+    step: "03",
+    title: "LLM Analysis",
+    desc: "An OpenAI-compatible LLM endpoint (NVIDIA-hosted) receives the transcript with an engineered prompt that enforces strict grounding. Every extracted point must be supported by a direct quote from the transcript.",
+  },
+  {
+    step: "04",
+    title: "Structured Output",
+    desc: "The model returns a structured JSON response covering management tone, confidence level, key positives, concerns, forward guidance (revenue, margin, capex), capacity utilization, and growth initiatives. Missing sections return null instead of fabricated content.",
+  },
+  {
+    step: "05",
+    title: "Export Results",
+    desc: "Analyst-ready results are exported to both JSON and a formatted PDF report using ReportLab, ready for direct use in investment research workflows.",
+  },
+];
+
+const techStack = [
+  { name: "Python", role: "Core application language" },
+  { name: "Streamlit", role: "Interactive web interface" },
+  { name: "LLM API (OpenAI-compatible)", role: "NVIDIA-hosted endpoint for structured analysis" },
+  { name: "PyMuPDF", role: "PDF text extraction" },
+  { name: "python-docx", role: "Word document parsing" },
+  { name: "Tesseract OCR", role: "Optical character recognition for scanned documents" },
+  { name: "ReportLab", role: "PDF report generation" },
+  { name: "Docker", role: "Containerisation with all OCR dependencies bundled" },
+];
+
+const highlights = [
+  "Strict hallucination control via quote-grounded extraction — every point cites a direct source from the transcript",
+  "Missing or unavailable data sections return null instead of fabricated content",
+  "Supports PDF, DOCX, and TXT formats with automatic OCR fallback for scanned documents",
+  "Structured JSON output with consistent schema for programmatic consumption",
+  "Analyst-ready PDF export for immediate use in research workflows",
+  "Fully containerised with Docker for portable, reproducible deployment",
+];
+---
+<ProjectLayout title="Earnings Call Research Tool">
+
+  <!-- Header -->
+  <div data-reveal class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="text-xs font-mono px-2.5 py-1 rounded border text-purple-400 bg-purple-400/10 border-purple-400/30">AI / LLM</span>
+      <span class="text-xs font-mono px-2.5 py-1 rounded border text-slate-400 bg-slate-400/10 border-slate-700">Personal Project</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">Earnings Call Research Tool</h1>
+    <p class="text-slate-400 text-lg leading-relaxed mb-6">
+      A structured LLM-powered research tool that analyses earnings call transcripts and management commentary, producing analyst-ready outputs with strict hallucination control.
+    </p>
+    <div class="flex flex-wrap gap-3">
+      <a href="https://earnings-call-research-tool-1.onrender.com/" target="_blank" rel="noopener"
+        class="inline-flex items-center gap-2 px-4 py-2 bg-cyan-400 text-slate-900 rounded font-semibold text-sm hover:bg-cyan-300 transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        </svg>
+        Live Demo
+      </a>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <section data-reveal class="mb-12">
+    <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+      <span class="text-cyan-400 font-mono text-sm">01.</span> Overview
+    </h2>
+    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 text-slate-400 leading-relaxed space-y-4">
+      <p>
+        Earnings calls are critical events for investors and analysts, but manually reading through long transcripts to extract structured insights is time-consuming and error-prone. This tool automates that process using a large language model with carefully engineered prompts.
+      </p>
+      <p>
+        The key challenge in LLM-based document analysis is hallucination — models confidently generating information not present in the source. This tool solves that by requiring every extracted data point to include a direct supporting quote from the transcript. If the information is not present, the field returns null rather than a fabricated answer.
+      </p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="mb-12">
+    <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+      <span class="text-cyan-400 font-mono text-sm">02.</span> How It Works
+    </h2>
+    <div class="space-y-4">
+      {steps.map(s => (
+        <div class="flex gap-5 bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-cyan-400/30 transition-colors">
+          <span class="font-mono text-cyan-400 text-xl font-bold shrink-0">{s.step}</span>
+          <div>
+            <h3 class="text-white font-semibold mb-1">{s.title}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="mb-12">
+    <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+      <span class="text-cyan-400 font-mono text-sm">03.</span> Tech Stack
+    </h2>
+    <div class="grid sm:grid-cols-2 gap-3">
+      {techStack.map(t => (
+        <div class="flex items-start gap-3 bg-slate-900 border border-slate-800 rounded-lg p-4 hover:border-cyan-400/30 transition-colors">
+          <span class="text-cyan-400 mt-0.5 shrink-0">▸</span>
+          <div>
+            <p class="text-white text-sm font-semibold">{t.name}</p>
+            <p class="text-slate-500 text-xs">{t.role}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Key Highlights -->
+  <section class="mb-12">
+    <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+      <span class="text-cyan-400 font-mono text-sm">04.</span> Key Highlights
+    </h2>
+    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+      <ul class="space-y-3">
+        {highlights.map(h => (
+          <li class="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
+            <span class="text-cyan-400 mt-0.5 shrink-0">✓</span>
+            {h}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Output Structure -->
+  <section class="mb-12">
+    <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+      <span class="text-cyan-400 font-mono text-sm">05.</span> Output Structure
+    </h2>
+    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+      <p class="text-slate-400 text-sm mb-4">The tool extracts the following structured fields from each transcript:</p>
+      <div class="grid sm:grid-cols-2 gap-2">
+        {["Management Tone", "Confidence Level", "Key Positives", "Key Concerns", "Revenue Guidance", "Margin Guidance", "Capex Guidance", "Capacity Utilization", "Growth Initiatives"].map(field => (
+          <div class="flex items-center gap-2 font-mono text-xs text-cyan-400/80 bg-cyan-400/5 border border-cyan-400/10 px-3 py-2 rounded">
+            <span class="text-slate-600">›</span> {field}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</ProjectLayout>

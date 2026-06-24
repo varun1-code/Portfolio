@@ -1,0 +1,112 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+
+const steps = [
+  { step: "01", title: "Data Ingestion", desc: "Raw cricket match data is collected covering multiple seasons and tournaments. The dataset includes ball-by-ball records, match results, player statistics, and team performance metrics." },
+  { step: "02", title: "Data Cleaning and Transformation", desc: "SQL queries clean the raw data by handling missing values, normalizing player and team names, and transforming ball-by-ball records into structured aggregates for analysis." },
+  { step: "03", title: "KPI Calculation", desc: "Key performance indicators are calculated using SQL: batting average, strike rate, economy rate, bowling average, and win probability metrics are derived and stored as computed views for fast querying." },
+  { step: "04", title: "Power BI Dashboard", desc: "The cleaned and transformed data is connected to Power BI. An interactive dashboard is built with dynamic filters for team, player, and match format, enabling drill-down analysis from tournament level down to individual match performance." },
+];
+
+const techStack = [
+  { name: "SQL", role: "Data cleaning, transformation, and KPI calculation" },
+  { name: "Power BI", role: "Interactive dashboard and data visualization" },
+  { name: "Data Modeling", role: "Structured relational schema for cricket statistics" },
+];
+
+const kpis = ["Batting Average", "Strike Rate", "Economy Rate", "Bowling Average", "Win Probability", "Run Rate Trends", "Partnership Analysis", "Format Comparison"];
+
+const highlights = [
+  "End-to-end ETL pipeline from raw match data to interactive dashboard",
+  "Dynamic filters for team, player, and format enabling non-technical stakeholder exploration",
+  "KPI definitions aligned with standard cricket analytics methodology",
+  "Drill-down capability from tournament level to individual match and player performance",
+  "Designed for non-technical stakeholders with clear visual hierarchies and tooltips",
+];
+---
+<ProjectLayout title="Cricket Analytics Dashboard">
+
+  <div data-reveal class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="text-xs font-mono px-2.5 py-1 rounded border text-orange-400 bg-orange-400/10 border-orange-400/30">Data Analytics</span>
+      <span class="text-xs font-mono px-2.5 py-1 rounded border text-slate-400 bg-slate-400/10 border-slate-700">Academic Project</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">Cricket Analytics Dashboard</h1>
+    <p class="text-slate-400 text-lg leading-relaxed">
+      An end-to-end analytics pipeline that ingests raw cricket match data, transforms it with SQL, and visualizes key performance indicators in an interactive Power BI dashboard with dynamic filters.
+    </p>
+  </div>
+
+  <section data-reveal class="mb-12">
+    <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+      <span class="text-cyan-400 font-mono text-sm">01.</span> Overview
+    </h2>
+    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 text-slate-400 leading-relaxed space-y-4">
+      <p>Cricket generates enormous amounts of structured data across every match, season, and tournament. This project builds a complete analytics pipeline that takes raw match data and transforms it into actionable insights through a well-designed Power BI dashboard.</p>
+      <p>The goal was to make cricket data accessible to non-technical stakeholders such as coaches, analysts, and fans. The dashboard provides intuitive visual exploration with dynamic filters, while SQL handles all the heavy lifting of data transformation and KPI computation.</p>
+    </div>
+  </section>
+
+  <section data-reveal class="mb-12">
+    <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+      <span class="text-cyan-400 font-mono text-sm">02.</span> Key Performance Indicators
+    </h2>
+    <div data-reveal-group class="grid sm:grid-cols-2 gap-2">
+      {kpis.map(kpi => (
+        <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 font-mono text-sm text-cyan-400/80 hover:border-cyan-400/30 transition-colors">
+          <span class="text-slate-600">›</span>{kpi}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section data-reveal class="mb-12">
+    <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+      <span class="text-cyan-400 font-mono text-sm">03.</span> How It Works
+    </h2>
+    <div data-reveal-group class="space-y-4">
+      {steps.map(s => (
+        <div class="flex gap-5 bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-cyan-400/30 transition-colors">
+          <span class="font-mono text-cyan-400 text-xl font-bold shrink-0">{s.step}</span>
+          <div>
+            <h3 class="text-white font-semibold mb-1">{s.title}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section data-reveal class="mb-12">
+    <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+      <span class="text-cyan-400 font-mono text-sm">04.</span> Tech Stack
+    </h2>
+    <div data-reveal-group class="grid sm:grid-cols-2 gap-3">
+      {techStack.map(t => (
+        <div class="flex items-start gap-3 bg-slate-900 border border-slate-800 rounded-lg p-4 hover:border-cyan-400/30 transition-colors">
+          <span class="text-cyan-400 mt-0.5 shrink-0">▸</span>
+          <div>
+            <p class="text-white text-sm font-semibold">{t.name}</p>
+            <p class="text-slate-500 text-xs">{t.role}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section data-reveal class="mb-12">
+    <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+      <span class="text-cyan-400 font-mono text-sm">05.</span> Key Highlights
+    </h2>
+    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+      <ul class="space-y-3">
+        {highlights.map(h => (
+          <li class="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
+            <span class="text-cyan-400 mt-0.5 shrink-0">✓</span>{h}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+</ProjectLayout>

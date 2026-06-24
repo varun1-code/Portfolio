@@ -1,0 +1,61 @@
+---
+const skillGroups = [
+  {
+    category: "LLMs & AI",
+    icon: "🤖",
+    skills: ["Prompt Engineering", "Structured JSON Output", "Hallucination Control", "OpenAI-compatible APIs", "Claude (Anthropic)", "HuggingFace Transformers"],
+  },
+  {
+    category: "Machine Learning",
+    icon: "🧠",
+    skills: ["PyTorch", "TensorFlow", "Scikit-learn", "CNNs", "Computer Vision", "Transfer Learning", "Model Evaluation"],
+  },
+  {
+    category: "Backend & APIs",
+    icon: "⚙️",
+    skills: ["Python", "FastAPI", "Flask", "REST APIs", "GraphQL", "Sidekiq", "Webhooks", "Ruby on Rails"],
+  },
+  {
+    category: "Frontend",
+    icon: "🎨",
+    skills: ["React", "Vite", "Tailwind CSS", "Streamlit", "JavaScript"],
+  },
+  {
+    category: "Data & Docs",
+    icon: "📊",
+    skills: ["SQL", "SQLite", "Pandas", "NumPy", "Redis", "Power BI", "PyMuPDF", "Tesseract OCR", "ReportLab"],
+  },
+  {
+    category: "DevOps & Tools",
+    icon: "🛠️",
+    skills: ["Docker", "Git", "GitHub", "Linux", "Pytest", "Vitest", "Postman"],
+  },
+];
+---
+<section id="skills" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div data-reveal class="flex items-center gap-4 mb-16">
+      <span class="font-mono text-cyan-400 text-sm glow">02.</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-white">Skills</h2>
+      <div class="flex-1 h-px bg-slate-800"></div>
+    </div>
+
+    <div data-reveal-group class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {skillGroups.map(group => (
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-cyan-400/40 hover:-translate-y-1 transition-all duration-300 group">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-2xl">{group.icon}</span>
+            <h3 class="text-white font-semibold">{group.category}</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {group.skills.map(skill => (
+              <span class="px-2.5 py-1 bg-slate-800 text-slate-400 text-xs rounded-md border border-slate-700 group-hover:border-cyan-400/20 transition-colors font-mono">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
